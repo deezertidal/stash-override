@@ -1,0 +1,182 @@
+parsers:
+  - reg: ^.*$ 
+    code: |
+      module.exports.parse = (raw, { yaml }) => {
+        const rawObj = yaml.parse(raw)
+        const groups = []
+        const rules = []
+        return yaml.stringify({ ...rawObj, 'proxy-groups': groups, rules })
+      } 
+    yaml:
+      prepend-proxy-groups:
+      - name: 🚀SELECT
+        type: select
+        proxies:
+         - ♻️URL-TEST
+         - ⚖FALL-BACK
+         - DIRECT
+         - 🇭🇰香港
+         - 🇨🇳台湾
+         - 🇯🇵日本
+         - 🇸🇬新加坡
+         - 🇰🇷韩国
+         - 🇺🇸美国
+         - 📍其他
+      - name: ♻️URL-TEST
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+        lazy: true
+        tolerance: 0
+      - name: ⚖FALL-BACK
+        type: fallback
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+      - name: 📹YouTube
+        type: select
+        proxies:
+         - ♻️URL-TEST
+         - ⚖FALL-BACK
+         - 🚀SELECT
+         - DIRECT
+         - 🇭🇰香港
+         - 🇨🇳台湾
+         - 🇯🇵日本
+         - 🇸🇬新加坡
+         - 🇰🇷韩国
+         - 🇺🇸美国
+         - 📍其他
+      - name: 📽Netflix
+        type: select
+        proxies:
+         - ♻️URL-TEST
+         - ⚖FALL-BACK
+         - 🚀SELECT
+         - DIRECT
+         - 🇭🇰香港
+         - 🇨🇳台湾
+         - 🇯🇵日本
+         - 🇸🇬新加坡
+         - 🇰🇷韩国
+         - 🇺🇸美国
+         - 📍其他
+      - name: 🤖OpenAI
+        type: select
+        proxies:
+         - ♻️URL-TEST
+         - ⚖FALL-BACK
+         - 🚀SELECT
+         - DIRECT
+         - 🇭🇰香港
+         - 🇨🇳台湾
+         - 🇯🇵日本
+         - 🇸🇬新加坡
+         - 🇰🇷韩国
+         - 🇺🇸美国
+         - 📍其他
+      - name: 🔍Bing
+        type: select
+        proxies:
+         - ♻️URL-TEST
+         - ⚖FALL-BACK
+         - 🚀SELECT
+         - DIRECT
+         - 🇭🇰香港
+         - 🇨🇳台湾
+         - 🇯🇵日本
+         - 🇸🇬新加坡
+         - 🇰🇷韩国
+         - 🇺🇸美国
+         - 📍其他
+      - name: 🇭🇰香港
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+      - name: 🇨🇳台湾
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+      - name: 🇯🇵日本
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+      - name: 🇸🇬新加坡
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+      - name: 🇰🇷韩国
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+      - name: 🇺🇸美国
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+      - name: 📍其他
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 600
+      commands:
+        - mixed-port=7890
+        - proxy-groups.(♻️URL-TEST).proxies=[]proxyNames
+        - proxy-groups.(⚖FALL-BACK).proxies=[]proxyNames
+        - proxy-groups.🇭🇰香港.proxies=[]proxyNames|港|香港|🇭🇰|HK|Hong Kong
+        - proxy-groups.🇨🇳台湾.proxies=[]proxyNames|台|台湾|新北|彰化|TW|Taiwan
+        - proxy-groups.🇯🇵日本.proxies=[]proxyNames|日|日本|🇯🇵|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan
+        - proxy-groups.🇰🇷韩国.proxies=[]proxyNames|韩|韓|韩国|🇰🇷|KR|Korea|KOR|首尔
+        - proxy-groups.🇸🇬新加坡.proxies=[]proxyNames|新加坡|🇸🇬|坡|狮城|SG|Singapore
+        - proxy-groups.🇺🇸美国.proxies=[]proxyNames|美|美国|🇺🇸|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
+        - proxy-groups.📍其他.proxies=[]proxyNames|^[^香日台新韩美]*$
+        - proxy-groups.🇭🇰香港.proxies.0+REJECT
+        - proxy-groups.🇨🇳台湾.proxies.0+REJECT
+        - proxy-groups.🇯🇵日本.proxies.0+REJECT
+        - proxy-groups.🇰🇷韩国.proxies.0+REJECT
+        - proxy-groups.🇸🇬新加坡.proxies.0+REJECT
+        - proxy-groups.🇺🇸美国.proxies.0+REJECT
+        - proxy-groups.📍其他.proxies.0+REJECT
+      prepend-rules:
+        - RULE-SET,antiad,REJECT
+        - RULE-SET,youtube,📹YouTube
+        - RULE-SET,netflix,📽Netflix
+        - RULE-SET,openai,🤖OpenAI
+        - RULE-SET,bing,🔍Bing
+        - RULE-SET,global,🚀SELECT
+        - GEOIP,CN,DIRECT
+        - MATCH,🚀SELECT
+      mix-rule-providers: 
+        antiad:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/deezertidal/private@main/rule/AntiAD.rule"
+          path: ./ruleset/AntiAD.rule
+          interval: 21600
+        global:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/deezertidal/private@main/rule/Global.rule"
+          path: ./ruleset/Global.rule
+          interval: 21600
+        netflix:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@release/rule/Clash/Netflix/Netflix.yaml"
+          path: ./ruleset/netflix.yaml
+          interval: 21600
+        bing:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@release/rule/Clash/Bing/Bing.yaml"
+          path: ./ruleset/bing.yaml
+          interval: 21600
+        openai:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@release/rule/Clash/OpenAI/OpenAI.yaml"
+          path: ./ruleset/openai.yaml
+          interval: 21600    
+        youtube:
+          type: http
+          behavior: classical
+          url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@release/rule/Clash/YouTube/YouTube.yaml"
+          path: ./ruleset/youtube.yaml
+          interval: 21600
