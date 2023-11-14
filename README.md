@@ -45,7 +45,6 @@
 |:white_check_mark:番茄小说|[:link:链接地址](https://yfamily.vercel.app/stoverride/fanqie.stoverride)|番茄小说去广告
 |:white_check_mark:fantastical|[:link:链接地址](https://yfamily.vercel.app/stoverride/fantastical.stoverride)|日历类
 |:white_check_mark:fimo|[:link:链接地址](https://yfamily.vercel.app/stoverride/fimo.stoverride)|相机类
-|:white_check_mark:ft中文网|[:link:链接地址](https://yfamily.vercel.app/stoverride/ft.stoverride)|财经类
 |:white_check_mark:grammarly|[:link:链接地址](https://yfamily.vercel.app/stoverride/grammarly.stoverride)|外语类
 |:white_check_mark:grow|[:link:链接地址](https://yfamily.vercel.app/stoverride/grow.stoverride)|健康类
 |:white_check_mark:烘焙小屋|[:link:链接地址](https://yfamily.vercel.app/stoverride/hbxw.stoverride)|食谱类
